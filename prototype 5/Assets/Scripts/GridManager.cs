@@ -9,7 +9,7 @@ public class GridManager : MonoBehaviour
     public static GridManager Instance;
     [SerializeField] private int _width, _height;
 
-    [SerializeField] private Tile _groundTile,_keyTile;
+    [SerializeField] private Tile _groundTile,_keyTile,_lavaTile,_winTile;
 
     [SerializeField] private Transform _cam;
 
@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
         
         for(int x = 0; x < _width;x++){
             for(int y = 0; y < _height;y++){
-                var randomTile = Random.Range(0,6) == 3 ? _keyTile : _groundTile;
+                var randomTile = Random.Range(0,6) == 3 ? _keyTile : _lavaTile;
                 var spawnedTile = Instantiate(randomTile, new Vector3(x,y),Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 

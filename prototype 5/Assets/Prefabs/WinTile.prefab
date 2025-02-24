@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6713905543088669506
+--- !u!1001 &4587455644854259428
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,19 +50,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.b
-      value: 0.015686275
+      value: 0.14201468
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.g
-      value: 0.7490196
+      value: 0.4528302
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.r
-      value: 0.9372549
+      value: 0.11320755
       objectReference: {fileID: 0}
     - target: {fileID: 8734122677079681939, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Name
-      value: KeyTile
+      value: WinTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70,34 +70,22 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8734122677079681939, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3669461521377303293}
+      addedObject: {fileID: 2218312842673133912}
   m_SourcePrefab: {fileID: 100100000, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
---- !u!1 &2044139416057368214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4716016971452960212, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
-  m_PrefabInstance: {fileID: 6713905543088669506}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2601184793292384465 stripped
+--- !u!1 &5088008569620702583 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8734122677079681939, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
-  m_PrefabInstance: {fileID: 6713905543088669506}
+  m_PrefabInstance: {fileID: 4587455644854259428}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-3669461521377303293
+--- !u!114 &2218312842673133912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2601184793292384465}
+  m_GameObject: {fileID: 5088008569620702583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 036637ce83a314618a36aed9b3daf0f1, type: 3}
+  m_Script: {fileID: 11500000, guid: faedfe08817074ebbad4539b3337cfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 4580662354705623316}
-  _highlight: {fileID: 2044139416057368214}
---- !u!212 &4580662354705623316 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
-  m_PrefabInstance: {fileID: 6713905543088669506}
-  m_PrefabAsset: {fileID: 0}

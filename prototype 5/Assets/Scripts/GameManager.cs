@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
     }
+
+    public void endGame(){
+
+    }
+    public void winGame(){
+        
+    }
 }
 
 public enum GameState

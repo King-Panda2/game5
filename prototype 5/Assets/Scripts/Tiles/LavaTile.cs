@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class LavaTile : MonoBehaviour
+public class LavaTile : Tile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // Check if the colliding object is the player
+        if (collision.CompareTag("Player"))
+        {
+            // Call the EndGame function in the GameManager
+            GameManager.Instance.endGame();
+        }
     }
 }
+
