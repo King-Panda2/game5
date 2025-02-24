@@ -15,12 +15,26 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
+    void Start()
+    {
+        GenerateGrid();
+    }
+
     void Awake()
     {
         Instance = this;
     }
     public void GenerateGrid(){
+
+        // debug (ensure tile prefabs exist)
+        if (_groundTile == null || _keyTile == null)
+        {
+            Debug.LogError("tile prefab isnt assigned");
+            return;
+        }
+
         _tiles = new Dictionary<Vector2, Tile>();
+        
         for(int x = 0; x < _width;x++){
             for(int y = 0; y < _height;y++){
                 var randomTile = Random.Range(0,6) == 3 ? _keyTile : _groundTile;
