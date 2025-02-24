@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager Instance;
     [SerializeField] private int _width, _height;
 
     [SerializeField] private Tile _groundTile,_keyTile;
@@ -14,11 +15,12 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
-    void Start(){
-        GenerateGrid();
+    void Awake()
+    {
+        Instance = this;
     }
-        void GenerateGrid(){
-            _tiles = new Dictionary<Vector2, Tile>();
+    public void GenerateGrid(){
+        _tiles = new Dictionary<Vector2, Tile>();
         for(int x = 0; x < _width;x++){
             for(int y = 0; y < _height;y++){
                 var randomTile = Random.Range(0,6) == 3 ? _keyTile : _groundTile;
