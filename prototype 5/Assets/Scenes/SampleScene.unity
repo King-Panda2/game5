@@ -150,7 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 16
   _height: 10
-  _tilePrefab: {fileID: 6777317288386864599, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
+  _groundTile: {fileID: 2075539591824967867, guid: 3a07485e4002c45a0a635dc7bad87faa, type: 3}
+  _keyTile: {fileID: -3669461521377303293, guid: 5fd94e1dda6604ca6a7bc3db89b8b5c3, type: 3}
   _cam: {fileID: 519420032}
 --- !u!4 &134889085
 Transform:
