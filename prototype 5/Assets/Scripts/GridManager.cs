@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GridManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         GenerateGrid();
+        UnitManager.Instance.SpawnEnemy();
     }
 
     public void GenerateGrid()
@@ -33,9 +35,9 @@ public class GridManager : MonoBehaviour
         _tiles = new Dictionary<Vector2, Tile>();
         _keyCount = 0;
 
-        for (int x = 0; x < _width; x++)
+        for (int x = -1; x < _width+1; x++)
         {
-            for (int y = 0; y < _height; y++)
+            for (int y = -1; y < _height+1; y++)
             {
                 Vector2 tilePosition = new Vector2(x, y);
                 Tile spawnedTile;
@@ -44,6 +46,10 @@ public class GridManager : MonoBehaviour
                 if (x == _width - 1 && y == _height - 1)
                 {
                     spawnedTile = Instantiate(_winTile, new Vector3(x, y), Quaternion.identity);
+                }// ✅ Surround the map with lava tiles
+                else if (x == -1 || x == _width || y == -1 || y == _height)
+                {
+                    spawnedTile = Instantiate(_lavaTile, new Vector3(x, y), Quaternion.identity);
                 }
                 else
                 {
@@ -59,6 +65,9 @@ public class GridManager : MonoBehaviour
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
+    public Tile getEnemySpawn(){
+        return _tiles.Where(t=>t.Value.walkable).OrderBy(t=>Random.value).First().Value;
+    }
     public void ClearGrid()
     {
         Debug.Log("🧹 Clearing old tiles...");

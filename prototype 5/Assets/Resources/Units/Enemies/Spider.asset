@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388664ee19ab14e3f88ff5d93880af82, type: 3}
   m_Name: Spider
   m_EditorClassIdentifier: 
-  faction: 0
+  faction: 1
+  unitPrefab: {fileID: 2575450277803799612, guid: e4bd932fd21714618ae32cb3c7a32ea2, type: 3}

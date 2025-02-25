@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] private TMP_Text remainingStepsText;
+
     public static PlayerManager Instance;
     private Vector2 _startPosition = new Vector2(0, 0);
     private Vector2 _playerPosition;
@@ -74,8 +77,21 @@ public class PlayerManager : MonoBehaviour
     {
         _remainingSteps = Random.Range(1, 7);
         Debug.Log($"🎲 Rolled a {_remainingSteps}");
+        UpdateRemainingStepsUI();
         HighlightAvailableTiles();
     }
+    private void UpdateRemainingStepsUI()
+    {
+        if (remainingStepsText != null)
+        {
+            remainingStepsText.text = $"Remaining Steps: {_remainingSteps}";
+        }
+        else
+        {
+            Debug.LogError("❌ Remaining Steps TMP Text is not assigned!");
+        }
+    }
+
 
     private void HighlightAvailableTiles()
     {
@@ -116,6 +132,7 @@ public class PlayerManager : MonoBehaviour
         {
             _selectedPath.Add(tilePosition);
             _playerPosition = tilePosition;
+            
 
             if (_tiles.TryGetValue(tilePosition, out Tile tile))
             {
@@ -129,6 +146,7 @@ public class PlayerManager : MonoBehaviour
             }
 
             HighlightAvailableTiles();
+            UpdateRemainingStepsUI();
         }
     }
 
@@ -155,6 +173,7 @@ public class PlayerManager : MonoBehaviour
         _canMove = false;
         _remainingSteps = 0;
         HighlightAvailableTiles();
+        UpdateRemainingStepsUI();
     }
 
     private IEnumerator PlayerDeath()

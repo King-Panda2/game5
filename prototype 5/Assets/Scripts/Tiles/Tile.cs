@@ -4,6 +4,9 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer _renderer;
     private Color _originalColor;
+    [SerializeField] private bool _iswalkable;
+    public BaseUnit OccupiedUnit;
+    public bool walkable => _iswalkable && OccupiedUnit ==null;
     private bool _canHighlight = false; // Prevents unnecessary highlighting
 
     public virtual void Init(int x, int y)
@@ -57,6 +60,13 @@ public class Tile : MonoBehaviour
         {
             _renderer.color = color;
         }
+    }
+
+    public void SetUnit(BaseUnit unit){
+        if(unit.occupiedTile !=null) unit.occupiedTile.OccupiedUnit = null;
+        unit.transform.position = transform.position;
+        OccupiedUnit = unit;
+        unit.occupiedTile = this;
     }
 
 }

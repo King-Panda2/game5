@@ -49,12 +49,14 @@ public class GameManager : MonoBehaviour
     public void winGame()
     {
         Debug.Log("🎉 You Win! Restarting Game...");
+        SoundManager.Instance.PlayWinSound();
         ResetGame();
     }
 
     public void endGame()
     {
         Debug.Log("💀 Player Died! Restarting Game...");
+        SoundManager.Instance.PlayDeathSound();
         ResetGame();
     }
 }
