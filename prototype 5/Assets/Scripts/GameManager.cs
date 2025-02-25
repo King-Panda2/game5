@@ -1,85 +1,59 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance;
-    public GameState GameState;
 
     void Awake()
     {
-        Instance = this;
-    } 
-    void Start()
-    {
-        ChangeState(GameState.GenerateGrid);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // ✅ Prevents GameManager from being destroyed
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicates
+        }
     }
-    void Update(){
-        // Check if the "R" key is pressed to restart the game
+
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("🔄 Resetting game...");
             ResetGame();
         }
-        // Check if the "Q" key is pressed to quit the game
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QuitGame();
-        }
     }
 
-    public void ChangeState(GameState newState)
+    public void ResetGame()
     {
-        GameState = newState;
-        switch (newState)
-        {
-            case GameState.GenerateGrid:
-                GridManager.Instance.GenerateGrid();
-                break;
-            case GameState.SpawnHeroes:
-                break;
-            case GameState.SpawnEnemies:
-                break;
-            case GameState.HeroesTurn:
-                break;
-            case GameState.EnemiesTurn:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
-        }
+        Debug.Log("🔄 Resetting Game and Regenerating Grid...");
+
+        // Reset grid and player properly
+        GridManager.Instance.ClearGrid();
+        GridManager.Instance.GenerateGrid();
+
+        StartCoroutine(DelayedPlayerRespawn());
     }
 
-    public void endGame(){
-
-    }
-    public void winGame(){
-
-    }
-    public void ResetGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Game Restarted!");
-    }
-    public void QuitGame()
+    private IEnumerator DelayedPlayerRespawn()
     {
-        Debug.Log("Quitting Game...");
-        // Quit the application
-        Application.Quit();
-
-        // If running in the Unity Editor, stop play mode
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        yield return new WaitForSeconds(0.1f); // ✅ Small delay ensures grid loads first
+        PlayerManager.Instance.RespawnPlayer();
     }
-}
 
-public enum GameState
-{
-    GenerateGrid = 0,
-    SpawnHeroes = 1,
-    SpawnEnemies = 2,
-    HeroesTurn = 3,
-    EnemiesTurn = 4
+    public void winGame()
+    {
+        Debug.Log("🎉 You Win! Restarting Game...");
+        ResetGame();
+    }
+
+    public void endGame()
+    {
+        Debug.Log("💀 Player Died! Restarting Game...");
+        ResetGame();
+    }
 }

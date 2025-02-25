@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class LavaTile : Tile
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the colliding object is the player
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")) // ✅ Check if it's the player
         {
-            // Call the EndGame function in the GameManager
-            GameManager.Instance.endGame();
+            Debug.Log("🔥 Player stepped on lava!");
+            GameManager.Instance.endGame(); // ✅ Calls the end game function
         }
     }
 }
-

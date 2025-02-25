@@ -4,11 +4,9 @@ public class WinTile : Tile
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the colliding object is the player
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")) // ✅ Check if the player steps on it
         {
-            // Call the EndGame function in the GameManager
-            GameManager.Instance.winGame();
+            GameManager.Instance.winGame(); // ✅ Calls win function
         }
     }
 }

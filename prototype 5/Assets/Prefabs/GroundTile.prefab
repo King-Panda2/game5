@@ -82,12 +82,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004ca104b57064073907d162f25d9778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseColor: {r: 0.13608047, g: 0.13916351, b: 0.20754719, a: 1}
-  _offsetColor: {r: 0.18823425, g: 0.19813919, b: 0.2830189, a: 1}
   _renderer: {fileID: 763207134163413887}
-  _highlight: {fileID: 2979273041316957437}
---- !u!1 &2979273041316957437 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4716016971452960212, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
-  m_PrefabInstance: {fileID: 7505857329283367209}
-  m_PrefabAsset: {fileID: 0}
+  _baseColor: {r: 1, g: 1, b: 1, a: 1}
+  _offsetColor: {r: 1, g: 1, b: 1, a: 1}
