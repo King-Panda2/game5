@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         GridManager.Instance.ClearGrid();
         GridManager.Instance.GenerateGrid();
 
+        // delay to let grid load first
         StartCoroutine(DelayedPlayerRespawn());
     }
 

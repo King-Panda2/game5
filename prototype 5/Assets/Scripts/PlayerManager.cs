@@ -22,17 +22,20 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        // ensure player is active and respawn
         gameObject.SetActive(true);
         RespawnPlayer();
     }
 
     void Update()
     {
+        // space = roll dicee
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RollDice();
         }
 
+        // if player can move and hits M - move step by step
         if (_canMove && Input.GetKeyDown(KeyCode.M))
         {
             StartCoroutine(MovePlayer());
