@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -76,11 +84,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -3669461521377303293}
   m_SourcePrefab: {fileID: 100100000, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
---- !u!1 &2044139416057368214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4716016971452960212, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
-  m_PrefabInstance: {fileID: 6713905543088669506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2601184793292384465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8734122677079681939, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
@@ -99,7 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 4580662354705623316}
-  _highlight: {fileID: 2044139416057368214}
+  _iswalkable: 0
+  OccupiedUnit: {fileID: 0}
 --- !u!212 &4580662354705623316 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -21,13 +22,6 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
-
-    void Start()
-    {
-        // ensure player is active and respawn
-        gameObject.SetActive(true);
-        RespawnPlayer();
     }
 
     void Update()
@@ -50,16 +44,15 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("🚀 Respawning player at starting position...");
 
         gameObject.SetActive(true); // ✅ Ensure player is active
-        
-        transform.position = _startPosition;  // ✅ Reset position
+        transform.position = _startPosition; // ✅ Reset position
         _playerPosition = _startPosition;
-        transform.localScale = Vector3.one;  // ✅ Reset scale in case of shrinking
+        transform.localScale = Vector3.one; // ✅ Reset scale in case of shrinking
 
         SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
         if (playerSprite != null)
         {
             playerSprite.enabled = true;  // ✅ Make sure the sprite is visible
-            playerSprite.color = Color.cyan;  // ✅ Change to a visible color (e.g., black)
+            playerSprite.color = Color.cyan;  // ✅ Ensure color visibility
         }
         else
         {
@@ -68,10 +61,31 @@ public class PlayerManager : MonoBehaviour
 
         _selectedPath.Clear();
         _canMove = false;
+
+        StartCoroutine(EnableCollisionAfterDelay()); // ✅ Prevent instant key collection
         HighlightAvailableTiles();
     }
 
+    private IEnumerator EnableCollisionAfterDelay()
+    {
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider != null)
+        {
+            playerCollider.enabled = false; // ✅ Temporarily disable collision
+            yield return new WaitForSeconds(0.5f); // ✅ Short delay
+            playerCollider.enabled = true; // ✅ Re-enable collision
+            Debug.Log("✅ Player collision enabled.");
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bat"))
+        {
+            Debug.Log("🦇 You hit a bat!");
+            GameManager.Instance.endGame();
+        }
+    }
 
     private void RollDice()
     {
@@ -156,16 +170,6 @@ public class PlayerManager : MonoBehaviour
         {
             transform.position = step;
 
-            if (_tiles.TryGetValue(step, out Tile tile))
-            {
-                if (tile is LavaTile)
-                {
-                    StartCoroutine(PlayerDeath());
-                    yield break;
-                }
-
-                tile.SetColor(Color.white);
-            }
             yield return new WaitForSeconds(0.3f);
         }
 
@@ -175,37 +179,4 @@ public class PlayerManager : MonoBehaviour
         HighlightAvailableTiles();
         UpdateRemainingStepsUI();
     }
-
-    private IEnumerator PlayerDeath()
-    {
-        SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
-
-        if (playerSprite == null)
-        {
-            Debug.LogError("❌ Player SpriteRenderer is missing!");
-            yield break;
-        }
-
-        playerSprite.color = Color.grey; // ✅ Ensure color change before disappearing
-
-        for (float i = 1f; i > 0; i -= 0.1f)
-        {
-            transform.localScale = new Vector3(i, i, 1);
-            yield return new WaitForSeconds(0.05f);
-        }
-
-        gameObject.SetActive(false);  // ✅ Hide player instead of destroying
-
-        if (GameManager.Instance == null)
-        {
-            Debug.LogError("❌ GameManager is missing! Cannot restart game.");
-            yield break;
-        }
-
-        GameManager.Instance.endGame(); // ✅ Restart game after player "dies"
-    }
-
-
-
-
 }

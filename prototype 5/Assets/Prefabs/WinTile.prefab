@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380792191515659157, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -54,15 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.b
-      value: 0.14201468
+      value: 0.08139539
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.g
-      value: 0.4528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Color.r
-      value: 0.11320755
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734122677079681939, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}
       propertyPath: m_Name
@@ -94,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 6707187213002482866}
+  _iswalkable: 0
+  OccupiedUnit: {fileID: 0}
 --- !u!212 &6707187213002482866 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7114945934255467094, guid: a9aa7c48b34f947c5b026b254394a965, type: 3}

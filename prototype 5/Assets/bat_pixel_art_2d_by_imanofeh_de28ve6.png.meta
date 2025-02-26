@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bat_pixel_art_2d_by_imanofeh_de28ve6_0: 5065334834230679741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

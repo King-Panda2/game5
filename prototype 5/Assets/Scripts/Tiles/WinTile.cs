@@ -2,11 +2,30 @@ using UnityEngine;
 
 public class WinTile : Tile
 {
+    private bool isUnlocked = false; // ✅ Locked until keys are collected
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) // ✅ Check if the player steps on it
+        Debug.Log($"➡️ WinTile at {transform.position} triggered by {collision.gameObject.name}");
+
+        if (collision.CompareTag("Player"))
         {
-            GameManager.Instance.winGame(); // ✅ Calls win function
+            if (isUnlocked)
+            {
+                Debug.Log("🎉 Player reached WinTile! You win!");
+                GameManager.Instance.winGame();
+            }
+            else
+            {
+                Debug.Log("❌ You need to collect both keys first!");
+            }
         }
+    }
+
+    public void UnlockWinTile()
+    {
+        isUnlocked = true;
+        SetColor(Color.yellow); // ✅ Change color to indicate activation
+        Debug.Log("🚪 WinTile is now unlocked!");
     }
 }
